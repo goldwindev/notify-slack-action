@@ -125,6 +125,7 @@ def construct_payload(inputs):
     message = message.replace('{commit_sha}', commit_sha)
     message = message.replace('{run_url}', run_url)
     message = message.replace('{workflow_url}', workflow_url)
+    message = message.replace('\\n', '\n')
 
     # added user mentions to the message
     if job_status in mention_users_when and mention_users.strip() != '':
@@ -175,8 +176,7 @@ def notify_slack(payload, testing=False):
         headers = {'Content-Type': 'application/json'}
         url = os.getenv('SLACK_WEBHOOK_URL')
         print('payload: ', payload)
-        res = requests.post(url, data=payload, headers=headers)
-        print('res: ', res.json())
+        requests.post(url, data=payload, headers=headers)
 
 
 def main(testing=False):

@@ -174,7 +174,9 @@ def notify_slack(payload, testing=False):
     if not testing:
         headers = {'Content-Type': 'application/json'}
         url = os.getenv('SLACK_WEBHOOK_URL')
-        requests.post(url, data=payload, headers=headers)
+        print('payload: ', payload)
+        res = requests.post(url, data=payload, headers=headers)
+        print('res: ', response.json())
 
 
 def main(testing=False):

@@ -176,7 +176,7 @@ def notify_slack(payload, testing=False):
         url = os.getenv('SLACK_WEBHOOK_URL')
         print('payload: ', payload)
         res = requests.post(url, data=payload, headers=headers)
-        print('res: ', response.json())
+        print('res: ', res.json())
 
 
 def main(testing=False):
